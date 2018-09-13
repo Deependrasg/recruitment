@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+{% block content %}
+ 
+<div class="row">
+	<nav class="col-sm-3" id="myScrollspy">
+    	<ul class="nav nav-pills flex-column" style="position: fixed">
+      		<h2>Technologies</h2>
+        	<li class="nav-item">
+        		<a class="nav-link active" href="#python">Python</a>
+     		</li>
+        	<li class="nav-item">
+        		<a class="nav-link " href="#ruby">Ruby</a>
+       		</li>
+        	<li class="nav-item">
+       			<a class="nav-link " href="#javascript">Javascript</a>
+    		</li>
+        	<li class="nav-item">
+        		<a class="nav-link " href="#dbms">DBMS</a>
+         	<li class="nav-item">
+        		<a class="nav-link " href="#oops">OOPS</a>
+        	</li>
+          <li class="nav-item">
+            <button class="btn btn-primary"><a href="{% url 'result' userid %}"  style="color: white">End test</a></button>
+          </li>
+		</ul>
+    </nav>
+	<div class="col-sm-9" id="main" >
+		{% for question in questions %}
+    		<div id="python">
+    			{% if question.technology.name == 'Python' %}
+            <div id="first{{question.id}}">
+            <p>
+ 						<h5 class="font-weight-bold">{{ question }}
+ 			 				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{question.id}}" aria-expanded="false" id="button">Ask</button>
+              <button type="button" class="btn btn-outline-secondary disabled">{{ question.difficulty|difficulty_name }}</button>
+ 						</h5>
+					</p>
+					<div class="collapse" id="{{question.id}}">
+	    				<p>{{ question.answer }}</p>
+				    	<form class='formsubmit' method="POST" action="">
+				    		{% csrf_token %}
+				    		<div class="form-group">
+                  <label for="rating">Ratings</label>
+                    <select id="rating" name="ratings">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+				    		<input type="hidden" name="candidate" value="{{userid}}">
+				    		<input type="hidden" name="question" value="{{question.id}}">
+				    		<input type="submit" name="submit" id="submit">
+                <span id="message"></span>
+				    	</form>
+			    	
+					</div>
+          </div>
+    	{% endif %}
+    		</div>
+        {% endfor %}
+        {% for question in questions %}
+        <div id="ruby">
+          {% if question.technology.name == 'Ruby' %}
+            <div id="first{{question.id}}">
+            <p>
+            <h5 class="font-weight-bold">{{ question }}
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{question.id}}" aria-expanded="false" id="button">Ask</button>
+              <button type="button" class="btn btn-outline-secondary disabled">{{ question.difficulty|difficulty_name  }}</button>
+            </h5>
+          </p>
+          <div class="collapse" id="{{question.id}}">
+              <p>{{ question.answer }}</p>
+              <form class='formsubmit' method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="rating">Ratings</label>
+                    <select id="rating" name="ratings">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+                <input type="hidden" name="candidate" value="{{userid}}">
+                <input type="hidden" name="question" value="{{question.id}}">
+                <input type="submit" name="submit" id="submit">
+                <span id="message"></span>
+              </form>
+            
+          </div>
+        </div>
+          {% endif %}
+        </div>
+		{% endfor %}
+    {% for question in questions %}
+        <div id="javascript">
+          {% if question.technology.name == 'Javascript' %}
+            <div id="first{{question.id}}">
+            <p>
+            <h5 class="font-weight-bold">{{ question }}
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{question.id}}" aria-expanded="false" id="button">Ask</button>
+              <button type="button" class="btn btn-outline-secondary disabled">{{ question.difficulty|difficulty_name  }}</button>
+            </h5>
+          </p>
+          <div class="collapse" id="{{question.id}}">
+              <p>{{ question.answer }}</p>
+              <form class='formsubmit' method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="rating">Ratings</label>
+                    <select id="rating" name="ratings">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+                <input type="hidden" name="candidate" value="{{userid}}">
+                <input type="hidden" name="question" value="{{question.id}}">
+                <input type="submit" name="submit" id="submit">
+                <span id="message"></span>
+              </form>
+            
+          </div>
+        </div>
+          {% endif %}
+        </div>
+    {% endfor %}
+    {% for question in questions %}
+        <div id="dbms">
+          {% if question.technology.name == 'DBMS' %}
+            <div id="first{{question.id}}">
+            <p>
+            <h5 class="font-weight-bold">{{ question }}
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{question.id}}" aria-expanded="false" id="button">Ask</button>
+              <button type="button" class="btn btn-outline-secondary disabled">{{ question.difficulty|difficulty_name  }}</button>
+            </h5>
+          </p>
+          <div class="collapse" id="{{question.id}}">
+              <p>{{ question.answer }}</p>
+              <form class='formsubmit' method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="rating">Ratings</label>
+                    <select id="rating" name="ratings">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+                <input type="hidden" name="candidate" value="{{userid}}">
+                <input type="hidden" name="question" value="{{question.id}}">
+                <input type="submit" name="submit" id="submit">
+                <span id="message"></span>
+              </form>
+            
+          </div>
+        </div>
+          {% endif %}
+        </div>
+    {% endfor %}
+    {% for question in questions %}
+        <div id="oops">
+          {% if question.technology.name == 'OOPS' %}
+            <div id="first{{question.id}}">
+            <p>
+            <h5 class="font-weight-bold">{{ question }}
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{question.id}}" aria-expanded="false" id="button">Ask</button>
+              <button type="button" class="btn btn-outline-secondary disabled">{{ question.difficulty|difficulty_name  }}</button>
+            </h5>
+          </p>
+          <div class="collapse" id="{{question.id}}">
+              <p>{{ question.answer }}</p>
+              <form class='formsubmit' method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="rating">Ratings</label>
+                    <select id="rating" name="ratings">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+                <input type="hidden" name="candidate" value="{{userid}}">
+                <input type="hidden" name="question" value="{{question.id}}">
+                <input type="submit" name="submit" id="submit">
+                <span id="message"></span>
+              </form>
+            
+          </div>
+        </div>
+          {% endif %}
+        </div>
+    {% endfor %}
+    </div>	
+</div>
+{% endblock %}
+
+{% block javascript %}
+ <script type="text/javascript">
+
+  $('body').scrollspy({ target: '#myScrollspy' })
+      var divId
+   $(".formsubmit").submit(function(event){
+      var data = $(this).serializeArray();
+        quesid=data[3].value;
+        divId = "first"+quesid;
+        console.log(divId)
+        $.ajax({
+             type:"POST",
+             url:"/ratings/",
+             data: data,
+             success: function(result){
+             if (result=='Success')
+             	{
+                 $('#message').html("<small>Rating Submitted!</small>");
+                 $('input[type="text"]').val('');
+                 $('#'+divId).hide();
+             	}
+            }
+        });
+        return false;
+   });
+</script>
+{% endblock %}

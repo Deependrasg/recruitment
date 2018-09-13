@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row justify">
+    <div class="col-md-6">
+    	<h2>Candidate Details</h2>
+        <form method="post">
+            {%csrf_token%}
+            {% for error in form.non_field_errors %}
+                <div class="form-group has-errors text-danger small">
+                    {{error}}
+                </div>
+            {% endfor %}
+            {% for field in form %}
+            <div class="form-group has-errors text-danger small">
+                {{field.errors}}
+            </div>
+			<div class="form-group">
+            	<label>{{ field.label_tag }}</label>
+                        {{field}}
+            </div>
+            {% endfor %}
+                <button class="btn btn-primary">Take Interview</button>
+    
+            </form>
+
+    </div>
+    <div class="col-md-6">
+        <h2><a href="{% url 'result_index' %}"> Result</a></h2>
+    </div>
+</div>
+
+
+{% endblock %}
